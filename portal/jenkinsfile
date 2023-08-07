@@ -12,7 +12,7 @@ pipeline{
         stage('Push Docker image'){
             steps {
                 script{
-                    docker.withRegistry( 'registry.hub.docker.com', 'dockerhub' ){
+                    docker.withRegistry( 'registry.hub.docker.com/', 'dockerhub' ){
                         dockerapp.push('latest')
                         dockerapp.push("${env.BUILD_ID}")
                     }
@@ -22,7 +22,7 @@ pipeline{
         stage('Deploy Service'){
             steps{
                 withKubeConfig([credentialsId: 'kubeconfig']){
-                        sh ("./01-service/create_service.sh")
+                        sh ( "./01-service/create_service.sh" )
                 }                        
             }
         }    
