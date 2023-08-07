@@ -8,20 +8,15 @@ pipeline{
                     try{
                         sh 'dockerapp = docker.build("celsinhobueno/portal:${env.BUILD_ID}", '-f Dockerfile ./')'
                     }catch (Exception e) {
-                            slackSend (color: 'error', message: "[ FALHA ] Não foi possivel construir o container - ${BUILD_URL} em ${currentBuild.duration}s", tokenCredentialId: 'slack-token')
-                            sh "echo $e"
-                            currentBuild.result = 'ABORTED'
-                            error('Erro')
+                                error('Erro')
                     }
-                    
-                    
                 }
             }
         }
         stage('Push Docker image'){
             steps {
                 script{
-                    docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub'){
+                    docker.withRegistry( 'https://registry.hub.docker.com/', 'dockerhub' ){
                         dockerapp.push('latest')
                         dockerapp.push("${env.BUILD_ID}")
                     }                    
