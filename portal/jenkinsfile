@@ -5,7 +5,7 @@ pipeline{
         stage('Build Docker image'){
             steps{
                 script{
-                    dockerapp = docker.build("celsinhobueno/painel:${env.BUILD_ID}", '-f .Dockerfile .')
+                    dockerapp = docker.build("celsinhobueno/portal:${env.BUILD_ID}", '-f portal/Dockerfile ./')
                 }
             }
         }
