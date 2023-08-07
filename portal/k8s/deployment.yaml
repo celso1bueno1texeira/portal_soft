@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  namespace: default
+  name: portal
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: portal
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 10%
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: portal
+        role: main
+        tier: app
+    spec:
+      containers:
+      - name: portal
+        image: celsinhobueno/painel:{{TAG}}
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            cpu: 10m
+            memory: 125Mi        
