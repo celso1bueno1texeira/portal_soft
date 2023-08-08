@@ -32,7 +32,7 @@ pipeline{
             steps{
                 script{
                     echo "Hello kube"
-                    kubectl get pod
+                    sh "kubectl get pod"
                 }
                 withKubeConfig([credentialsId: 'kubeconfig']){
                         sh ( "./01-service/create_service.sh" )
