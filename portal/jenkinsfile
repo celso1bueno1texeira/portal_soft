@@ -28,13 +28,24 @@ pipeline{
                 }
             }
         }
+        stage('Teste Conexão'){
+            steps{
+                script{
+                    echo "Hello kube"
+                    kubectl get pod
+                }
+                withKubeConfig([credentialsId: 'kubeconfig']){
+                        sh ( "./01-service/create_service.sh" )
+                }                        
+            }
+        } 
         stage('Deploy Service'){
             steps{
                 withKubeConfig([credentialsId: 'kubeconfig']){
                         sh ( "./01-service/create_service.sh" )
                 }                        
             }
-        }    
+        }   
         stage('Deploy Kubernetes'){
             environment{
                 tag_version = "${env.BUILD_ID}"
