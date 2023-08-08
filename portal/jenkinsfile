@@ -12,17 +12,23 @@ pipeline{
         }
         stage('Push Docker image'){
             steps {
-                script{
-                        docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub'){
-                        docker push ("celsinhobueno/painel:${env.BUILD_ID}") 
-                        docker push ("celsinhobueno/painel:latest") 
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
+                        // Faz o push da imagem para o Docker Hub usando o ID da imagem
                         docker.image(env.IMAGE_ID).push()
-                        // docker.image("${env.BUILD_ID}").push
-                        // docker.image('latest').push    
-                        // dockerImage.push('latest')
-                        // dockerImage.push("${env.BUILD_ID}")
                     }
                 }
+                // script{
+                //         docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub'){
+                //         docker push ("celsinhobueno/painel:${env.BUILD_ID}") 
+                //         docker push ("celsinhobueno/painel:latest") 
+                //         docker.image(env.IMAGE_ID).push()
+                //         // docker.image("${env.BUILD_ID}").push
+                //         // docker.image('latest').push    
+                //         // dockerImage.push('latest')
+                //         // dockerImage.push("${env.BUILD_ID}")
+                //     }
+                // }
             }
         }
         stage('Deploy Service'){
