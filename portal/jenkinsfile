@@ -13,8 +13,10 @@ pipeline{
             steps {
                 script{
                         docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub'){
-                        docker.image("${env.BUILD_ID}").push
-                        docker.image('latest').push    
+                        docker push celsinhobueno/painel:${env.BUILD_ID}  
+                        docker push celsinhobueno/painel:latest 
+                        // docker.image("${env.BUILD_ID}").push
+                        // docker.image('latest').push    
                         // dockerImage.push('latest')
                         // dockerImage.push("${env.BUILD_ID}")
                     }
