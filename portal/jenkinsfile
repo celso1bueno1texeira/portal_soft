@@ -18,17 +18,14 @@ pipeline{
                         docker.image(env.IMAGE_ID).push()
                     }
                 }
-                // script{
-                //         docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub'){
-                //         docker push ("celsinhobueno/painel:${env.BUILD_ID}") 
-                //         docker push ("celsinhobueno/painel:latest") 
-                //         docker.image(env.IMAGE_ID).push()
-                //         // docker.image("${env.BUILD_ID}").push
-                //         // docker.image('latest').push    
-                //         // dockerImage.push('latest')
-                //         // dockerImage.push("${env.BUILD_ID}")
-                //     }
-                // }
+            }
+        }
+        stage('Configure Kubernetes Credentials') {
+            steps {
+                script {
+                    // Configuração do arquivo kubeconfig
+                    writeFile file: "${env.HOME}/.kube/config", text: "${env.KUBE_CONFIG}"
+                }
             }
         }
         stage('Deploy Service'){
