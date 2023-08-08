@@ -6,6 +6,7 @@ pipeline{
             steps{
                 script{
                     def dockerImage = docker.build ("celsinhobueno/painel:${env.BUILD_ID}", './portal')
+                    env.IMAGE_ID = dockerImage.id
                 }
             }
         }
@@ -15,6 +16,7 @@ pipeline{
                         docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub'){
                         docker push ("celsinhobueno/painel:${env.BUILD_ID}") 
                         docker push ("celsinhobueno/painel:latest") 
+                        docker.image(env.IMAGE_ID).push()
                         // docker.image("${env.BUILD_ID}").push
                         // docker.image('latest').push    
                         // dockerImage.push('latest')
