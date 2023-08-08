@@ -5,7 +5,7 @@ pipeline{
         stage('Build Docker image'){
             steps{
                 script{
-                    docker.build -t ("celsinhobueno/portal:${env.BUILD_ID}" .)
+                    docker.build -t "celsinhobueno/portal:${env.BUILD_ID}" .
                 }
             }
         }
