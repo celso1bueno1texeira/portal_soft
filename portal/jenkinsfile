@@ -45,7 +45,7 @@ pipeline{
             steps{
                 withKubeConfig([credentialsId: 'kubeconfig']){
                         sh """
-                            ./01-service/create_service.sh"
+                            01-service/create_service.sh"
                         """
                 }                        
             }
