@@ -59,7 +59,9 @@ pipeline{
             steps {
                 withKubeConfig([credentialsId: 'kube']) {
                     script{
-                        sh "kubectl apply -f portal/k8s/deployment.yaml"
+                        echo "Hello kube"
+                        sh "kubectl get nodes"
+                        sh "kubectl apply -f https://github.com/celso1bueno1texeira/portal_soft/blob/main/portal/k8s/deployment.yaml"
                     }                                      
                 }
             }
