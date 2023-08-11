@@ -58,10 +58,10 @@ pipeline{
             }
             steps{
                 withKubeConfig([credentialsId: 'kube']){
-                    sh """
-                        sed -i "s/{{TAG}}/$tag_version/g" portal/k8s/deployment.yaml
-                        kubectl apply -f portal/k8s/deployment.yaml
-                    """
+                    script{
+                        sh "sed -i "s/{{TAG}}/$tag_version/g" portal/k8s/deployment.yaml"
+                        sh "kubectl apply -f portal/k8s/deployment.yaml"
+                    }
                 }
             }
         }
