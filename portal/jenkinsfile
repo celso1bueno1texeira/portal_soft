@@ -28,24 +28,26 @@ pipeline{
                 }
             }
         }
-        // stage('Teste Conexão'){
-        //     steps{
-        //         script{
-        //             echo "Hello kube"
-        //             sh "kubectl get pod"
-        //         }
-        //         withKubeConfig([credentialsId: 'kubeconfig']){
-        //                 sh ( "./01-service/create_service.sh" )
-        //         }                        
-        //     }
-        // } 
-        // stage('Deploy Service'){
-        //     steps{
-        //         withKubeConfig([credentialsId: 'kubeconfig']){
-        //                 sh ( "./01-service/create_service.sh" )
-        //         }                        
-        //     }
-        // }   
+        stage('Teste Conexão'){
+            steps{
+                script{
+                    echo "Hello kube"
+                    sh "kubectl get nodes"
+                }
+                withKubeConfig([credentialsId: 'kubeconfig']){
+                        sh ( "./01-service/create_service.sh" )
+                }                        
+            }
+        } 
+        stage('Deploy Service'){
+            steps{
+                withKubeConfig([credentialsId: 'kubeconfig']){
+                        sh """
+                            ./01-service/create_service.sh"
+                        """
+                }                        
+            }
+        }   
         stage('Deploy Kubernetes'){
             agent{
                 kubernetes{
