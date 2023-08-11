@@ -59,8 +59,7 @@ pipeline{
             steps {
                 withKubeConfig([credentialsId: 'kube']) {
                     script{
-                        echo "Hello kube"
-                        sh "kubectl get nodes"
+                        sh "sed -i 's/{{TAG}}/$tag_version/g' portal/k8s/deployment.yaml"
                         sh "kubectl apply -f portal/k8s/deployment.yaml"
                     }                                      
                 }
