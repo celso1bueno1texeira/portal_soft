@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: portal
   annotations:
-    kubernetes.digitalocean.com/load-balancer-id: "a4f9a238d47744727853db5ee466f342"
+    # kubernetes.digitalocean.com/load-balancer-id: "a4f9a238d47744727853db5ee466f342"
     service.beta.kubernetes.io/do-loadbalancer-size-unit: "3"
     service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: "true"
 spec:
