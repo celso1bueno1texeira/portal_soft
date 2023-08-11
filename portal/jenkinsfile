@@ -35,7 +35,6 @@ pipeline{
                     script{
                         echo "Hello kube"
                         sh "kubectl get nodes"
-                        sh "./01-service/create_service.sh"
                     }
                     //withKubeConfig([credentialsId: 'kubec']){
                 }
