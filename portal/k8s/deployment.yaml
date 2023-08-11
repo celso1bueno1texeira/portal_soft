@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: portal
-        image: celsinhobueno/portal:lastet
+        image: celsinhobueno/portal:24
         ports:
         - containerPort: 3000
         resources:
