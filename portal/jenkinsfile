@@ -29,12 +29,14 @@ pipeline{
             }
         }
         stage('Teste Conexão'){
+            
             steps{
+                withKubeConfig([credentialsId: 'kube'])
                 script{
                     echo "Hello kube"
                     sh "kubectl get nodes"
                 }
-                withKubeConfig([credentialsId: 'kubeconfig']){
+                //withKubeConfig([credentialsId: 'kubec']){
                         sh ( "./01-service/create_service.sh" )
                 }                        
             }
