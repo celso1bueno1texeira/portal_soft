@@ -8,5 +8,5 @@ then
     echo = "o service já existe!!!"
     exit
 else
-    kubectl apply -f ./k8s/service.yaml
+    kubectl apply -f portal/k8s/service.yaml
 fi
