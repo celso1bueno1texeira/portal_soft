@@ -4,7 +4,7 @@ metadata:
   namespace: default
   name: portal
 spec:
-  replicas: 2
+  replicas: 10
   selector:
     matchLabels:
       app: portal
@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: portal
-        image: celsinhobueno/portal:60
+        image: celsinhobueno/portal:tag
         ports:
         - containerPort: 3000
         resources:

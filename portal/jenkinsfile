@@ -59,7 +59,7 @@ pipeline{
             steps {
                 withKubeConfig([credentialsId: 'kube']) {
                     script{
-                        sh "sed '/imagem:/s/'$tag_version-1'/$tag_version/g' portal/k8s/deployment.yaml"
+                        sh "sed -i -e "s;tag;$tag_version;g" portal/k8s/deployment.yaml"
                         sh "kubectl apply -f portal/k8s/deployment.yaml"
                     }                                      
                 }
