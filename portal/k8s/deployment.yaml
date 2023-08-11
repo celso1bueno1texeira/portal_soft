@@ -4,7 +4,7 @@ metadata:
   namespace: default
   name: portal
 spec:
-  replicas: 20
+  replicas: 3
   selector:
     matchLabels:
       app: portal
