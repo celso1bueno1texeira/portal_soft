@@ -1,17 +1,17 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  namespace: dev
-  name: k8s-cluster-ingress-dev
+  namespace: default
+  name: k8s-cluster
   annotations:
     kubernetes.io/ingress.global-static-ip-name: portal-ingress-dev
   
 spec:
   rules:
-  - host: -dev
+  - host: celsinho.com.br
     http:
       paths:
-      - path: /home
+      - path: /
         pathType: Prefix
         backend:
           service:
