@@ -61,7 +61,7 @@ pipeline{
                     script{
                         echo "Hello kube"
                         sh "kubectl get nodes"
-                        sh "kubectl apply -f /portal/k8s/deployment.yaml"
+                        sh "kubectl apply -f portal/k8s/deployment.yaml"
                     }                                      
                 }
             }
