@@ -42,10 +42,8 @@ pipeline{
         }
         stage('Deploy Service'){
             steps{
-                withKubeConfig([credentialsId: 'kubeconfig']){
-                        sh """
-                            01-service/create-service.sh"
-                        """
+                withKubeConfig([credentialsId: 'kube']){
+                    sh "/01-service/create-service.sh"
                 }                        
             }
         }   
