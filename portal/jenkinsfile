@@ -56,14 +56,23 @@ pipeline{
             environment{
                 tag_version = "${env.BUILD_ID}"
             }
-            steps{                
-                withKubeConfig([credentialsId: 'kube']){
-                    kubectl apply -f portal/k8s/deployment.yaml
-                            // cd k8s/
-                            // sed -i "s/{{TAG}}/$tag_version/g" deployment.yaml                      
-                        
+            stage('Deploy para Kubernetes') {
+            steps {
+                script {
+                    sh """
+                        kubectl apply -f paotal/k8s/deployment.yaml
+                    """
                 }
             }
+        }
+            // steps{                
+            //     withKubeConfig([credentialsId: 'kube']){
+            //         - kubectl apply -f portal/k8s/deployment.yaml
+            //                 // cd k8s/
+            //                 // sed -i "s/{{TAG}}/$tag_version/g" deployment.yaml                      
+                        
+            //     }
+            // }
         }
     }
 }
