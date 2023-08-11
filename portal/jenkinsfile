@@ -59,7 +59,7 @@ pipeline{
             steps {
                 script {
                     sh """
-                        kubectl apply -f paotal/k8s/deployment.yaml
+                        kubectl apply -f portal/k8s/deployment.yaml
                     """
                 }
             }
