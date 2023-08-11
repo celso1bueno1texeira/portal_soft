@@ -58,7 +58,7 @@ pipeline{
             }
             steps {
                 withKubeConfig([credentialsId: 'kube']) {
-                    sh "kubectl apply -f deployment.yaml"                   
+                    sh "portal/kubernetes-deploy/deploy.sh"                   
                 }
             }
             // steps{                
