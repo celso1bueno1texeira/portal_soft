@@ -16,6 +16,7 @@ pipeline{
                     docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub') {
                         // Faz o push da imagem para o Docker Hub usando o ID da imagem
                         docker.image(env.IMAGE_ID).push()
+                        docker.image(latest).push()
                     }
                 }
             }
