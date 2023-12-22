@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_celso1bueno1texeira_portal_soft_1703257221089-pr-trigger-input-set
+  identifier: Build_celso1bueno1texeira_portal_soft_1703257221089prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_celso1bueno1texeira_portal_soft_1703257221089
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
