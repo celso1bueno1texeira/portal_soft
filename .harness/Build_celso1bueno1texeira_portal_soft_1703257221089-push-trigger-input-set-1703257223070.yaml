@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_celso1bueno1texeira_portal_soft_1703257221089-push-trigger-input-set
+  identifier: Build_celso1bueno1texeira_portal_soft_1703257221089pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_celso1bueno1texeira_portal_soft_1703257221089
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
